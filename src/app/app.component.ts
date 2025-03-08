@@ -1,12 +1,28 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css'],
+  standalone: true,  // Standalone
+  imports: [FormsModule, CommonModule, NgbTooltipModule]
 })
 export class AppComponent {
-  title = 'ANGULAR_PALINDROMO_AMSFATEC';
+  inputValue: string = '';
+  isPalindrome: boolean | null = null;
+
+  checkPalindrome(value: string): void {
+    console.log('Valor digitado:', value);
+    if (value.trim().length === 0) {
+      this.isPalindrome = null;
+      return;
+    }
+    const cleanedValue = value.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+    this.isPalindrome = cleanedValue === cleanedValue.split('').reverse().join('');
+    console.log('É palíndromo?', this.isPalindrome);
+  }
+
 }
