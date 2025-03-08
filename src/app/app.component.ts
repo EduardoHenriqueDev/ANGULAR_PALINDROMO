@@ -7,12 +7,15 @@ import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  standalone: true,  // Standalone
+  standalone: true,
   imports: [FormsModule, CommonModule, NgbTooltipModule]
 })
 export class AppComponent {
   inputValue: string = '';
   isPalindrome: boolean | null = null;
+
+  happyFace: string = 'assets/img/positivo.png';
+  sadFace: string = 'assets/img/negativo.png';
 
   checkPalindrome(value: string): void {
     console.log('Valor digitado:', value);
@@ -24,5 +27,4 @@ export class AppComponent {
     this.isPalindrome = cleanedValue === cleanedValue.split('').reverse().join('');
     console.log('É palíndromo?', this.isPalindrome);
   }
-
 }
